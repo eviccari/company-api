@@ -1,13 +1,16 @@
 package br.com.my_corp.company.company_api.app.domain.factories;
 
+import br.com.my_corp.company.company_api.adapters.repositories.Repository;
 import br.com.my_corp.company.company_api.app.domain.dtos.CompanyDTO;
 import br.com.my_corp.company.company_api.app.domain.models.Company;
+import br.com.my_corp.company.company_api.app.domain.services.CompanyService;
+import br.com.my_corp.company.company_api.app.domain.services.Service;
 
-public class CompanyFactory {
+public class DomainFactory {
 
-    private CompanyFactory(){}
+    private DomainFactory(){}
 
-    public static Company buildFrom(CompanyDTO dto) {
+    public static final Company buildCompany(CompanyDTO dto) {
         return Company.builder()
             .id(dto.getId())
             .name(dto.getName())
@@ -18,7 +21,7 @@ public class CompanyFactory {
         .build();
     }
     
-    public static CompanyDTO buildFrom(Company model) {
+    public static final CompanyDTO buildCompanyDTO(Company model) {
         return CompanyDTO.builder()
             .id(model.getId())
             .name(model.getName())
@@ -27,5 +30,9 @@ public class CompanyFactory {
             .createdAt(model.getCreatedAt())
             .updatedAt(model.getUpdatedAt())
         .build();
+    }
+
+    public static final Service<CompanyDTO> buildCompanyService(Repository<CompanyDTO> repo) {
+        return new CompanyService(repo);
     }
 }

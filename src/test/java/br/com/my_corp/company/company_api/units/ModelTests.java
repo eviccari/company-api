@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.my_corp.company.company_api.StarterTests;
 import br.com.my_corp.company.company_api.app.domain.dtos.CompanyDTO;
-import br.com.my_corp.company.company_api.app.domain.factories.CompanyFactory;
+import br.com.my_corp.company.company_api.app.domain.factories.DomainFactory;
 import br.com.my_corp.company.company_api.app.exceptions.UnprocessableEntityException;
 
 class ModelTests extends StarterTests{
@@ -18,7 +18,7 @@ class ModelTests extends StarterTests{
     void ShouldCreateNewCompany() {
 
         var dto = Instancio.of(CompanyDTO.class).create();
-        var model = CompanyFactory.buildFrom(dto);
+        var model = DomainFactory.buildCompany(dto);
         model.generateId();
         System.out.println(model.toString());
 
@@ -34,7 +34,7 @@ class ModelTests extends StarterTests{
             .set(Select.field(CompanyDTO.class, "id"), "")
         .create();
 
-        var model = CompanyFactory.buildFrom(dto);
+        var model = DomainFactory.buildCompany(dto);
 
         assertThrows(UnprocessableEntityException.class, () -> model.validate());
     }

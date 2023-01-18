@@ -9,9 +9,11 @@ import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CompanyDTO implements Serializable {
