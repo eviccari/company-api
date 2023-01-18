@@ -57,10 +57,10 @@ public class Company implements Identifiable, Validatable, Serializable {
         var sb = new StringBuilder("");
 
         var policyManager = new PolicyManager();
-        var validations = policyManager.applyPolicies(this);
+        var errorsList = policyManager.applyPolicies(this);
 
-        if(!validations.isEmpty()) {
-            validations.forEach(sb::append);
+        if(!errorsList.isEmpty()) {
+            errorsList.forEach(msg -> sb.append(String.format("%s; ", msg)));
             throw new UnprocessableEntityException(sb.toString());
         }
     }

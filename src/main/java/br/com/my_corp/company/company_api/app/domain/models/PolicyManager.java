@@ -10,10 +10,10 @@ import br.com.my_corp.company.company_api.utils.StringUtils;
 
 public class PolicyManager {
 
-    public static final String NAME_OK_POLICY_NAME = "name_is_not_empty";
-    public static final String ALIAS_IS_OK_POLICY_NAME = "alias_is_not_empty";
-    public static final String SHORT_NAME_IS_OK_POLICY_NAME = "short_name_is_not_empty";
-    public static final String ID_IS_OK_POLICY_NAME = "name_is_not_empty";
+    public static final String NAME_OK_POLICY_NAME = "name_is_empty";
+    public static final String ALIAS_IS_OK_POLICY_NAME = "alias_is_empty";
+    public static final String SHORT_NAME_IS_OK_POLICY_NAME = "short_name_is_empty";
+    public static final String ID_IS_OK_POLICY_NAME = "id_is_empty";
 
     public Map<String, Predicate<Company>> getPolicies() {
         Map<String, Predicate<Company>> policiesMap = new HashMap<>();
@@ -25,7 +25,7 @@ public class PolicyManager {
         return policiesMap;
     }
 
-    private String buildPolicyErrorMessage(String policyName) {
+    public String buildPolicyErrorMessage(String policyName) {
         return String.format("policy: %s has failed", policyName);
     }
 
@@ -33,12 +33,11 @@ public class PolicyManager {
         var result = new ArrayList<String>();
 
         this.getPolicies().forEach((policyName, policy) -> {
-            if(!policy.test(company)){
+            if(policy.test(company)){
                 result.add(this.buildPolicyErrorMessage(policyName));
             }
         });
 
         return result;
-    }
-    
+    }    
 }
