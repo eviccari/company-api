@@ -1,6 +1,7 @@
 package br.com.my_corp.company.company_api.controllers.v1;
 
 import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +26,7 @@ import br.com.my_corp.company.company_api.app.exceptions.UnprocessableEntityExce
 import br.com.my_corp.company.company_api.controllers.ControllerConfiguration;
 
 @RestController
-@RequestMapping("/api/v1/company")
+@RequestMapping("/api/v1/companies")
 public class CompanyController extends ControllerConfiguration{
 
     @Autowired

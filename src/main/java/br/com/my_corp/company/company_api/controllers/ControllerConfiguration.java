@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
 import br.com.my_corp.company.company_api.app.exceptions.BadRequestException;
 import br.com.my_corp.company.company_api.app.exceptions.HTTPException;
 import br.com.my_corp.company.company_api.app.exceptions.InternalServerErrorException;
